@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\luvinton\Code\excel-data-extractor\.env"
+VIRTUAL_ENV="C:\Users\luvinton\Code\beis\.env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

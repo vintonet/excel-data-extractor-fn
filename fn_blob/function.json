@@ -1,0 +1,23 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "inblob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "xls/{name}",
+      "connection": "xlsBlob"
+    },
+    {
+      "direction": "out",
+      "type": "cosmosDB",
+      "name": "outdoc",
+      "databaseName": "xlsdb",
+      "collectionName": "xlscol",
+      "leaseCollectionName": "xlsdocs",
+      "createLeaseCollectionIfNotExists": true,
+      "connectionStringSetting": "xlsCosmosDb",
+      "createIfNotExists": true
+    }
+  ]
+}
