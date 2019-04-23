@@ -9,5 +9,6 @@
   },
   "azureFunctions.pythonVenv": ".env",
   "debug.internalConsoleOptions": "neverOpen",
-  "python.pythonPath": "C:\\Users\\luvinton\\AppData\\Local\\Continuum\\anaconda3\\envs\\.env\\python.exe"
+  "python.pythonPath": ".env\\Scripts\\python.exe",
+  "python.linting.pylintEnabled": true
 }

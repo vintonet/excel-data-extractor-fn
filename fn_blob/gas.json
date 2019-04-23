@@ -1,0 +1,70 @@
+{
+    "templates": [{
+        "template": "gas_quarterly",
+        "fact": "Gas_quarterly_sales_and_transfers",
+        "extractors": [{
+            "range": "C17:H25",
+            "dim": ["Electricity_generation_sales","Transfers_to_parent_or_sister_company_for_electricity_generation", "Energy_industry", "Iron_and_steel", "Other_industry", "Non-energy_use", "Services_and_public_administration", "Other_final_users", "Domestic"],
+            "attr": ["Firm_Contract_Volume", "Firm_Contract_Value", "Interruptable_Contract_Volume", "Interruptable_Contract_Value", "Customer_Numbers"]
+        },
+        {
+            "range": "B8",
+            "dim": ["Company"],
+            "attr": ["Company_Name"]
+        },
+        {
+            "range": "B9",
+            "dim": ["Company"],
+            "attr": ["Completed_By_Name"]
+        },
+        {
+            "range": "B10",
+            "dim": ["Company"],
+            "attr": ["Completed_By_Email"]
+        },
+        {
+            "range": "B11",
+            "dim": ["Time_Completed"],
+            "attr": ["Quarter"]
+        },
+        {
+            "range": "D9",
+            "dim": ["Company"],
+            "attr": ["Completed_By_Phone"]
+        },
+        {
+            "range": "D11",
+            "dim": ["Time_Completed"],
+            "attr": ["Year"]
+        }]
+    },
+    {
+        "template": "gas_annual_sales_transfers_industries",
+        "fact": "Sales_and_transfers_to_the_energy_industries",
+        "extractors":[{
+            "range": "B11",
+            "dim": ["Time_Completed"],
+            "attr": ["Year"]
+        }]
+    }],
+    "template_applications": [{
+        "sheet": "Q1 Questionnaire",
+        "template": "gas_quarterly"
+    },
+    {
+        "sheet": "Q2 Questionnaire",
+        "template": "gas_quarterly"
+    },
+    {
+        "sheet": "Q3 Questionnaire",
+        "template": "gas_quarterly"
+    },
+    {
+        "sheet": "Q4 Questionnaire",
+        "template": "gas_quarterly"
+    },
+    {
+        "sheet": "Annual questionnaire",
+        "template": "gas_annual_sales_transfers_industries"
+    }]
+}
