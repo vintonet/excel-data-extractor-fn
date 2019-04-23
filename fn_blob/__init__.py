@@ -55,10 +55,6 @@ def main(inblob: func.InputStream, outdoc: func.Out[func.Document]):
         }
 
         outdoc.set(func.Document.from_dict({ "items": data_catalog }))
-        #template_wb = load_template(open('./fn_blob/gas.xls'))
-        #template_wb.load_templates()
-        #outdoc.set(func.Document.from_dict({ "items": data_dict }))
-        #return func.HttpResponse(data_dict, status_code="200")
 
     except Exception as e:
         logging.exception(str(e))
