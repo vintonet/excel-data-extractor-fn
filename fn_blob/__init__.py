@@ -51,20 +51,27 @@ def main(inblob: func.InputStream, outdoc: func.Out[func.Document]):
 
         data_catalog["metadata"] = {
             "workbook_name": inblob.name,
-            "datetime_processed": f"{datetime.datetime.now():%Y-%m-%d %H:%M:%S}"
+            "datetime_processed": f"{datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+            "result": "Success"
         }
 
         outdoc.set(func.Document.from_dict({ "items": data_catalog }))
 
     except Exception as e:
-        logging.exception(str(e))
-        #return func.HttpResponse(str(e), status_code="400")
+        err = f"Exception processing {inblob.name}: {str(e)}"
+        logging.exception(err)
+        data_catalog = {}  
+        data_catalog["metadata"] = {
+            "workbook_name": inblob.name,
+            "datetime_processed": f"{datetime.datetime.now():%Y-%m-%d %H:%M:%S}",
+            "result": "Failure",
+            "error": err
+        }
+        outdoc.set(func.Document.from_dict({ "items": data_catalog }))
+        raise Exception(err) from e
 
 def load_workbook(xls_bytes: io.BufferedIOBase) -> helpers.WorkbookHelper:
     return helpers.WorkbookHelper(xls_bytes)
-
-#def load_template(xls_bytes: io.BufferedIOBase) -> helpers.TemplateHelper:
-    #return helpers.TemplateHelper(xls_bytes)
 
 def load_cfg(path: str) -> Dict: 
     with open(path, "r") as f:
@@ -75,5 +82,5 @@ def get_template(cfg: Dict, template_name: str) -> Dict:
     try:
         return [t for t in cfg["templates"] if t["template"] == template_name][0]
     except:
-        pass
+        return {}
          
