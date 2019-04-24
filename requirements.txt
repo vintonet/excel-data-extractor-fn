@@ -1,3 +1,5 @@
 openpyxl
 xlrd
 git+https://github.com/Azure/azure-functions-python-library.git
+pyexcel
+pyexcel-xls
